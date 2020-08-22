@@ -102,9 +102,9 @@ export const Button = styled.button`
   background: ${({ disabled, type }) => {
     if (disabled) return 'grey'
     if (type === 'number') return '#283d3b'
-    if (type === 'operator') return 'lightblue'
-    if (type === 'util') return 'red'
-    return 'green'
+    if (type === 'operator') return '#ff9000'
+    if (type === 'util') return '#8C001A'
+    return '#91CB3E'
   }};
   width: 100%;
   margin: 0.5rem;
