@@ -23,7 +23,10 @@ export const Screen = styled.div`
   font-size: 4rem;
   border-radius: 0.8rem;
   display: flex;
+  height: 10rem;
+  letter-spacing: 1rem;
   justify-content: flex-end;
+  align-items: center;
   padding: 2rem;
   margin: 30px;
   width: 100%;
