@@ -62,7 +62,7 @@ export default function Calculator() {
       enableType('operator')
       enableType('util')
       setNum1(value)
-      setMessage('Agora digite escolha um operador.')
+      setMessage('Agora escolha um operador.')
       return addToScreen(value)
     }
 
@@ -80,7 +80,7 @@ export default function Calculator() {
       disableType('number')
       enableType('equal')
       setNum2(value)
-      setMessage('Para ver o resultado clique no =')
+      setMessage('Para ver o resultado clique no botão =')
       return addToScreen(value)
     }
 
