@@ -73,6 +73,7 @@ export const Result = styled.div`
 export const Letters = styled.div`
   display: flex;
   justify-content: center;
+  align-items: center;
   color: #333;
   height: 8rem;
   background: lightyellow;
