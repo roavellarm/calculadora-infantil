@@ -35,11 +35,10 @@ export const Message = styled.div`
   display: flex;
   justify-content: center;
   color: #333;
-  height: 8rem;
+  height: 7rem;
   font-size: 3rem;
   letter-spacing: 0px;
   font-weight: 300;
-  padding-bottom: 2rem;
 `
 
 export const Numbers = styled.div`
@@ -47,7 +46,8 @@ export const Numbers = styled.div`
   width: 100%;
   justify-content: center;
   align-items: center;
-  background: lightcoral;
+  background: ${transparentize(0.5, 'white')};
+  border-radius: 0.8rem;
   height: 8rem;
   color: #333;
   font-weight: 900;
@@ -75,9 +75,14 @@ export const Letters = styled.div`
   justify-content: center;
   color: #333;
   height: 8rem;
+  background: lightyellow;
+  border-radius: 0.8rem;
+  margin-top: 2rem;
+  width: 100%;
+  padding: 1rem;
   font-size: 3rem;
   letter-spacing: 0px;
-  font-weight: 300;
+  font-weight: 600;
   padding-bottom: 2rem;
 `
 

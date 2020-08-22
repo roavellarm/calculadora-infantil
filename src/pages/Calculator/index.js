@@ -121,9 +121,11 @@ export default function Calculator() {
         <Letters>
           {`${num1 ? capitalize(porExtenso(num1)) : ''} ${
             spellOperator(operator).symbol
-          } ${num2 ? porExtenso(num2) : ''} ${
-            result ? 'é igual a' : ''
-          } ${result}`}
+          } ${num2 ? porExtenso(num2) : ''} ${result ? 'é igual a' : ''} ${
+            result.includes('-')
+              ? `${porExtenso(result.split('-')[1])} negativo`
+              : porExtenso(result)
+          }`}
         </Letters>
       </Screen>
 
