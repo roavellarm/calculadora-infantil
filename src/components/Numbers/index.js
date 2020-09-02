@@ -16,12 +16,13 @@ const StyledNumbers = styled.div`
   font-size: 4rem;
   letter-spacing: ${({ hasOperator }) => hasOperator && '3rem'};
 `
-function Numbers({ children }) {
-  return <StyledNumbers>{children}</StyledNumbers>
+function Numbers({ children, hasOperator }) {
+  return <StyledNumbers hasOperator={hasOperator}>{children}</StyledNumbers>
 }
 
 Numbers.propTypes = {
   children: PropType.node,
+  hasOperator: PropType.bool.isRequired,
 }
 
 Numbers.defaultProps = {
