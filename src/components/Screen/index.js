@@ -3,7 +3,7 @@ import PropType from 'prop-types'
 import styled from 'styled-components'
 import { transparentize } from 'polished'
 
-export const StyledScreen = styled.div`
+const StyledScreen = styled.div`
   width: 100%;
   height: 30rem;
   padding: 2rem;

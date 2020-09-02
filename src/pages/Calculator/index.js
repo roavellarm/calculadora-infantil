@@ -12,7 +12,12 @@ import Result from 'components/Result'
 import Button from 'components/Button'
 
 import buttons from './buttonsInformation'
-import { getResultingNumber, spellOperator, spellNumber } from './helper'
+import {
+  getResultingNumber,
+  spellOperator,
+  spellNumber,
+  spellOperation,
+} from './helper'
 
 function Calculator() {
   const disabledInitialState = ['operator', 'equal', 'util']
@@ -74,7 +79,7 @@ function Calculator() {
     setResult(resultingNumber)
 
     setMessage(
-      `Parabéns! O resultado da ${spellOperator(operator).name} é ${spellNumber(
+      `Parabéns! O resultado da ${spellOperation(operator)} é ${spellNumber(
         resultingNumber
       )}`
     )
