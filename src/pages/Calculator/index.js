@@ -18,7 +18,7 @@ function Calculator() {
   const disabledInitialState = ['operator', 'equal', 'util']
   const messageInitialState = 'Digite um número'
 
-  const [calculation, setCalculation] = useState([])
+  const [calculationStep, setCalculationStep] = useState([])
   const [message, setMessage] = useState(messageInitialState)
   const [num1, setNum1] = useState(0)
   const [num2, setNum2] = useState(0)
@@ -33,63 +33,66 @@ function Calculator() {
     setNum2(0)
     setOperator('')
     setResult('')
-    setCalculation([])
+    setCalculationStep([])
   }
 
-  const disableType = type => setDisable(dis => [...dis, type])
-  const enableType = type => {
+  const disableButtons = type => setDisable(dis => [...dis, type])
+  const enableButtons = type => {
     return setDisable(dis => dis.filter(item => item !== type))
   }
 
-  const addToScreen = value => setCalculation([...calculation, value])
+  const addToScreen = value => setCalculationStep([...calculationStep, value])
 
-  const handleKeyboard = e => {
-    const { value } = e.target
+  const handleFirstNumberClicked = value => {
+    disableButtons('number')
+    enableButtons('operator')
+    enableButtons('util')
+    setNum1(value)
+    setMessage('Agora escolha um operador.')
+    return addToScreen(value)
+  }
+
+  const handleOperatorClicked = value => {
+    disableButtons('operator')
+    enableButtons('number')
+    setOperator(value)
+    setMessage('Ótimo! Agora escolha outro número.')
+    return addToScreen(value)
+  }
+
+  const handleSecondNumberClicked = value => {
+    disableButtons('number')
+    enableButtons('equal')
+    setNum2(value)
+    setMessage('Para ver o resultado clique no botão =')
+    return addToScreen(value)
+  }
+
+  const handleCalculationResult = value => {
+    disableButtons('equal')
+    const resultingNumber = getResultingNumber(operator, num1, num2)
+    setResult(resultingNumber)
+
+    setMessage(
+      `Parabéns! O resultado da ${spellOperator(operator).name} é ${spellNumber(
+        resultingNumber
+      )}`
+    )
+    return addToScreen(value + result)
+  }
+
+  const handleKeyboardEvents = event => {
+    const { value } = event.target
+
     if (value === 'Limpa') return backToInitialState()
 
-    // Step 1 - Write first number
-    if (!num1) {
-      disableType('number')
-      enableType('operator')
-      enableType('util')
-      setNum1(value)
-      setMessage('Agora escolha um operador.')
-      return addToScreen(value)
-    }
+    if (!num1) return handleFirstNumberClicked(value)
 
-    // // Step 2 - Write operator
-    // if (calculation.length === 1) {
-    //   disableType('operator')
-    //   enableType('number')
-    //   setOperator(value)
-    //   setMessage('Ótimo! Agora escolha outro número.')
-    //   return addToScreen(value)
-    // }
+    if (calculationStep.length === 1) return handleOperatorClicked(value)
 
-    // // Step 3 - Write second number
-    // if (calculation.length === 2) {
-    //   disableType('number')
-    //   enableType('equal')
-    //   setNum2(value)
-    //   setMessage('Para ver o resultado clique no botão =')
-    //   return addToScreen(value)
-    // }
+    if (calculationStep.length === 2) return handleSecondNumberClicked(value)
 
-    // // Step 4 - Execute operation and show result
-    // if (calculation.length === 3) {
-    //   disableType('equal')
-    //   const resultNumber = getResultingNumber(operator, num1, num2)
-    //   setResult(resultNumber)
-
-    //   setMessage(
-    //     `Parabéns! O resultado da ${spellOperator(operator).name} é ${
-    //       resultNumber.includes('-')
-    //         ? `${porExtenso(resultNumber.split('-')[1])} negativo`
-    //         : porExtenso(resultNumber)
-    //     }`
-    //   )
-    //   return addToScreen(value + result)
-    // }
+    if (calculationStep.length === 3) return handleCalculationResult(value)
     return null
   }
 
@@ -100,7 +103,8 @@ function Calculator() {
       <Screen>
         <Message>{message}</Message>
 
-        <Numbers hasOperator={operator.length}>
+        <Numbers hasOperator={!!operator.length}>
+          {calculationStep}
           {result !== '' ? <Result>{result}</Result> : null}
         </Numbers>
 
@@ -120,9 +124,10 @@ function Calculator() {
               return (
                 <Button
                   key={button.value}
+                  name={`${button.value}`}
                   value={button.value}
                   type={button.type}
-                  onClick={handleKeyboard}
+                  onClick={handleKeyboardEvents}
                   disabled={disable.includes(button.type)}
                 />
               )
