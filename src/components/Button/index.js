@@ -2,19 +2,17 @@ import React from 'react'
 import PropType from 'prop-types'
 import StyledButton from './styles'
 
-const Button = ({ onClick, type, value, disabled }) => {
+const Button = ({ name, type, ...props }) => {
   return (
-    <StyledButton type={type} onClick={e => onClick(e)} disabled={disabled}>
-      {value}
+    <StyledButton type={type} name={name} {...props}>
+      {name}
     </StyledButton>
   )
 }
 
 Button.propTypes = {
-  value: PropType.node.isRequired,
-  onClick: PropType.func.isRequired,
   type: PropType.string.isRequired,
-  disabled: PropType.bool.isRequired,
+  name: PropType.string.isRequired,
 }
 
 export default Button
