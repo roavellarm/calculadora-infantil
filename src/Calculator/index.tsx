@@ -21,7 +21,7 @@ export interface IoProps {
 }
 
 const initialState = {
-  message: 'Digite um número',
+  message: 'Escolha um número',
   disabledButtons: ['operator', 'equal', 'util'],
   steps: [],
   num1: '',
@@ -33,11 +33,11 @@ const initialState = {
 function Calculator() {
   const [io, setIo] = useState<IoProps>(initialState)
 
-  const handleKeyboardEvents = (event: { target: { value: string } }) => {
-    const { value } = event.target
+  const handleKeyboardEvents = (value: string) => {
     const { steps } = io
 
     if (value === 'Limpa') return setIo(initialState)
+
     if (!steps.length) return setIo(handleStep0(value, io))
     if (steps.length === 1) return setIo(handleStep1(value, io))
     if (steps.length === 2) return setIo(handleStep2(value, io))
@@ -57,6 +57,7 @@ function Calculator() {
             <Button
               key={button.value}
               value={button.value}
+              image={button.image}
               group={button.group}
               isDisabled={io.disabledButtons.includes(button.group)}
               onClick={handleKeyboardEvents}
