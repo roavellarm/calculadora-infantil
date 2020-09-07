@@ -2,7 +2,7 @@ import styled from 'styled-components'
 import { lighten } from 'polished'
 import { ButtonProps } from './index'
 
-export default styled.button<ButtonProps>`
+export default styled.div<ButtonProps>`
   background: ${({ isDisabled, group }) => {
     if (isDisabled) return lighten(0.2, 'grey')
     if (group === 'number') return '#283d3b'
@@ -10,9 +10,13 @@ export default styled.button<ButtonProps>`
     if (group === 'util') return '#8C001A'
     return '#91CB3E'
   }};
+  display: flex;
+  align-items: center;
+  justify-content: center;
   width: 100%;
   margin: 0.5rem;
-  padding: 1.5rem;
+  padding: ${({ isImageRepresentation }) =>
+    isImageRepresentation ? '0px' : '1.5rem'};
   border-width: 0px;
   border-radius: 2rem;
   color: ${({ isDisabled }) => (isDisabled ? 'lightgrey' : '#fff')};
