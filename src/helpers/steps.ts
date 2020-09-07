@@ -1,6 +1,6 @@
 import calculate from './calculate'
 import { spellOperation, spellNumber } from './words'
-import { IoProps } from '../index'
+import { IoProps } from '../Calculator'
 
 export const handleStep0 = (value: string, info: IoProps) => ({
   ...info,
