@@ -16,13 +16,12 @@ const Display: React.FC<Props> = ({ information }: Props) => {
     </>
   )
 
-  const showNumbersInLetters = () => (
+  const showNumbersInWords = () => (
     <>
       {capitalize(spellNumber(num1))}
-      {spellOperator(operator)}
-      {!!num2 && spellNumber(`${num2}`)}
-      {!!result && ' é igual a '}
-      {spellNumber(result)}
+      {` ${spellOperator(operator)}`}
+      {!!num2 && spellNumber(` ${num2}`)}
+      {!!result && ' é igual a ' + spellNumber(result)}
     </>
   )
 
@@ -34,7 +33,7 @@ const Display: React.FC<Props> = ({ information }: Props) => {
         {showNumbersInFigure()}
       </S.NumbersView>
 
-      <S.TextView>{showNumbersInLetters()}</S.TextView>
+      <S.TextView>{showNumbersInWords()}</S.TextView>
     </S.DisplayView>
   )
 }
