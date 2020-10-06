@@ -1,6 +1,6 @@
 import React from 'react'
-import { capitalize, spellOperator, spellNumber } from 'helpers/words'
-import { IoProps } from 'Calculator'
+import { capitalize, spellOperator, spellNumber } from '../../helpers/words'
+import { IoProps } from '../../Calculator'
 import * as S from './styles'
 
 interface Props {

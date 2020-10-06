@@ -1,15 +1,15 @@
 import React, { useState } from 'react'
-import Button from 'components/Button'
-import buttonsList from 'helpers/buttonsList'
+import Button from '../components/Button'
+import Display from '../components/Display'
+import Toggle from '../components/Toggle'
+import buttonsList from '../helpers/buttonsList'
 import {
   handleStep0,
   handleStep1,
   handleStep2,
   handleStep3,
-} from 'helpers/steps'
+} from '../helpers/steps'
 import * as S from './styles'
-import Display from 'components/Display'
-import Toggle from 'components/Toggle'
 
 export interface IoProps {
   message: string
@@ -33,7 +33,7 @@ const initialState = {
 
 function Calculator() {
   const [io, setIo] = useState<IoProps>(initialState)
-  const [isOnImageMode, setIsOnImageMode] = useState(false)
+  const [isOnImageMode, setIsOnImageMode] = useState<boolean>(false)
 
   const handleKeyboardEvents = (value: string) => {
     const { steps } = io

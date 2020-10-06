@@ -12,7 +12,13 @@ const SwitchContainer = styled.div`
   width: 300px;
 `
 
-const Toggle: React.FC = ({ setIsOnImageMode, isOnImageMode }) => {
+const Toggle = ({
+  setIsOnImageMode,
+  isOnImageMode,
+}: {
+  setIsOnImageMode(isOnImageMode: boolean): void
+  isOnImageMode: boolean
+}) => {
   const handleChange = () => {
     return setIsOnImageMode(!isOnImageMode)
   }

@@ -1,9 +1,21 @@
 import styled from 'styled-components'
 import { lighten } from 'polished'
-import { ButtonProps } from './index'
 
-export default styled.div<ButtonProps>`
-  background: ${({ isDisabled, group }) => {
+interface StyledButtonProps {
+  isDisabled: boolean
+  group: string
+  isOnImageMode: boolean
+  value: string | number
+}
+
+export const StyledButton = styled.div<StyledButtonProps>`
+  background: ${({
+    isDisabled,
+    group,
+  }: {
+    isDisabled: boolean
+    group: string
+  }) => {
     if (isDisabled) return lighten(0.2, 'grey')
     if (group === 'number') return '#283d3b'
     if (group === 'operator') return '#ff9000'

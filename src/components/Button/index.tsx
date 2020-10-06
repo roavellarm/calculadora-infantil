@@ -1,5 +1,5 @@
 import React from 'react'
-import StyledButton from './styles'
+import { StyledButton } from './styles'
 
 export interface ButtonProps {
   value: string | number
@@ -10,7 +10,7 @@ export interface ButtonProps {
   onClick: Function
 }
 
-const Button: React.FC<ButtonProps> = (props: ButtonProps) => {
+const Button = (props: ButtonProps) => {
   const { value, isOnImageMode, image, group, isDisabled, onClick } = props
 
   return (
