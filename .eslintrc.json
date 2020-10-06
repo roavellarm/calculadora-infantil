@@ -1,7 +1,8 @@
 {
   "env": {
     "browser": true,
-    "es2020": true
+    "es2020": true,
+    "jest": true
   },
   "extends": ["plugin:react/recommended", "airbnb", "prettier"],
   "parserOptions": {
@@ -15,6 +16,10 @@
   "rules": {
     "prettier/prettier": "error",
     "no-restricted-globals": "off",
+    "react/jsx-props-no-spreading": "off",
     "react/jsx-filename-extension": [1, { "extensions": [".js", ".jsx"] }]
+  },
+  "settings": {
+    "import/resolver": { "node": { "paths": ["src"] } }
   }
 }
