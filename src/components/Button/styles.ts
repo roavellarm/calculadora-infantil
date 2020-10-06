@@ -15,8 +15,7 @@ export default styled.div<ButtonProps>`
   justify-content: center;
   width: 100%;
   margin: 0.5rem;
-  padding: ${({ isImageRepresentation }) =>
-    isImageRepresentation ? '0px' : '1.5rem'};
+  padding: ${({ isOnImageMode }) => (isOnImageMode ? '0px' : '1.5rem')};
   border-width: 0px;
   border-radius: 2rem;
   color: ${({ isDisabled }) => (isDisabled ? 'lightgrey' : '#fff')};

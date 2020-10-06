@@ -5,10 +5,11 @@ import {
   handleStep0,
   handleStep1,
   handleStep2,
-  handleStep4,
+  handleStep3,
 } from 'helpers/steps'
 import * as S from './styles'
 import Display from 'components/Display'
+import Toggle from 'components/Toggle'
 
 export interface IoProps {
   message: string
@@ -32,6 +33,7 @@ const initialState = {
 
 function Calculator() {
   const [io, setIo] = useState<IoProps>(initialState)
+  const [isOnImageMode, setIsOnImageMode] = useState(false)
 
   const handleKeyboardEvents = (value: string) => {
     const { steps } = io
@@ -41,12 +43,17 @@ function Calculator() {
     if (!steps.length) return setIo(handleStep0(value, io))
     if (steps.length === 1) return setIo(handleStep1(value, io))
     if (steps.length === 2) return setIo(handleStep2(value, io))
-    if (steps.length === 3) return setIo(handleStep4(value, io))
+    if (steps.length === 3) return setIo(handleStep3(value, io))
     return null
   }
 
   return (
     <S.Container>
+      <Toggle
+        setIsOnImageMode={setIsOnImageMode}
+        isOnImageMode={isOnImageMode}
+      />
+
       <S.Title>Calculadora</S.Title>
 
       <Display information={io} />
@@ -58,6 +65,7 @@ function Calculator() {
               key={button.value}
               value={button.value}
               image={button.image}
+              isOnImageMode={isOnImageMode}
               group={button.group}
               isDisabled={io.disabledButtons.includes(button.group)}
               onClick={handleKeyboardEvents}

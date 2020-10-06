@@ -26,7 +26,7 @@ export const handleStep2 = (value: string, info: IoProps) => ({
   steps: [...info.steps, value],
 })
 
-export const handleStep4 = (value: string, info: IoProps) => {
+export const handleStep3 = (value: string, info: IoProps) => {
   const { num1, num2, operator, steps } = info
   const res = calculate(operator, Number(num1), Number(num2))
 
