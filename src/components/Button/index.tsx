@@ -1,4 +1,4 @@
-import React, { useState } from 'react'
+import React from 'react'
 import StyledButton from './styles'
 
 export interface ButtonProps {
